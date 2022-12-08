@@ -1,45 +1,32 @@
-
-
-// const parent = document.querySelector(".parent")
 const fish = document.querySelector(".hero")
+const obstacle = document.querySelector(".obstacles")
+const arrayObstacles = []
+let score = 0;
 
-// //function startGame() {
-//      // document.getElementById('game-board').style.display = 'block'; // game-board does not exist
-//       // document.getElementById('background-img').style.display = 'none';
-//       //currentBoard = new CanvasBoard();}
+class Obstacle {
+  constructor(name, x, y) {
+    this.x = Math.floor(Math.random()* 650);
+    this.y = Math.floor(Math.random()* 450);
+    this.name= "squid"
+    const Element = document.createElement("div")
+    Element.classList = this.name +" obstacle"
+    const obstacles = document.getElementById("obstacles")
+    obstacles.appendChild(Element)
+    this.element = Element
+  }
 
-//   //console.log("CLICK");
-//   //startGame()})
+  hideObstacle () {
+    this.element.style.display= "inline"
+  }
 
-// let frameCount = 1;
-
-// let score = 0;
-// let frames = 0;
-// const myObstacles = [];
-// let intervalId;
-
-// class Board {
-// constructor(width, height, color, x, y) {
-//   this.width = width;
-//   this.height = height;
-//   this.color = color;
-//   this.x = x;
-//   this.y = y;
-// }
-// }
-
-//  // function () // show board in click eventlistener - show your player parent-append-<div>  function () // method update, move 
+  showObstacle ()  {
+   // this.element.style.display = "inline"
+    this.element.style.left = this.x + "px"
+    this.element.style.top = this.y + "px"
+  }
 
 
-// class Obstacle {
-//   constructor(width, height, color, x, y) {
-//     this.width = width;
-//     this.height = height;
-//     this.color = color;
-//     this.x = x;
-//     this.y = y;
-//   }
-// }
+}
 
 class Fish {
   constructor(width, height, x, y) {
@@ -48,8 +35,6 @@ class Fish {
     this.x = 0;
     this.y = 0; 
     this.fish = fish;
-  
-    
   }
   
   moveup() {
@@ -79,10 +64,51 @@ class Fish {
     //limit
   }
 } 
-//   drawFish() {
-//     const fishImg = new Image();
-//     fishImg.src = this.img;
-  
+
+window.onload = () => {
+  document.getElementById('button').onclick = () => {
+    startGame(); 
+    //intervalId = setInterval(updateGame, 20);
+    console.log("buttonworking");
+  }
+}
+
+function startGame() {
+  const fish = new Fish()
+  let intervalId = setInterval (function() { 
+   const obstacles = new Obstacle ()
+   obstacles.showObstacle () 
+   console.log(obstacles)
+   my.arrayObstacles.push(obstacle)
+  }, 30000);
+  document.addEventListener('keydown', event => {
+    switch(event.key) {
+      case "ArrowUp":
+        fish.moveup();
+        console.log("UP");
+        break;
+      case "ArrowDown":
+        fish.movedown();
+        console.log("Down");
+        break;
+      case "ArrowLeft":
+        fish.moveleft();
+        console.log("Left")
+        break;
+      case "ArrowRight":
+        fish.moveright();
+        console.log("Right")
+        break;
+      }
+  })
+}
+
+
+
+// next step is to build an array and pick a random name from this array. 
+// push the obstacle to the array const my obstacle = new obstacle 
+ // const obstacles = [new Obstacle("angel"), new Obstacle("tropic"), new Obstacle("turtle"), new Obstacle("squid"), new Obstacle("koi"), new Obstacle("animal") ] 
+// for (i=0; i < obstacles.length; i++) {  obstacles[i].hideObstacle() }
 //     moveFish(keyCode) {}  
 
 // updateObstacles() {
@@ -118,54 +144,52 @@ class Fish {
 //  stop() {
 //   clearInterval(intervalId);
 // }
+// }//   drawFish() {
+//     const fishImg = new Image();
+//     fishImg.src = this.img;
+  
+  // positionObstacle() {
+  //   for (i = 0; i < myObstacle.length; i++) {
+  //     myObstacle[i].y += 1;
+  //     myObstacle[i].update();
+  //   }
+
+  // //function startGame() {
+//      // document.getElementById('game-board').style.display = 'block'; // game-board does not exist
+//       // document.getElementById('background-img').style.display = 'none';
+//       //currentBoard = new CanvasBoard();}
+
+//   //console.log("CLICK");
+//   //startGame()})
+
+// let frameCount = 1;
+// let frames = 0;
+// const myObstacles = [];
+// let intervalId;
+
+// class Board {
+// constructor(width, height, color, x, y) {
+//   this.width = width;
+//   this.height = height;
+//   this.color = color;
+//   this.x = x;
+//   this.y = y;
 // }
-    
-window.onload = () => {
-  document.getElementById('button').onclick = () => {
-    startGame(); 
-    //intervalId = setInterval(updateGame, 20);
-    
-    console.log("buttonworking");
-  }
-}
-
-function startGame() {
-  const fish = new Fish()
-  document.addEventListener('keydown', event => {
-   // fish.moveLeft();
-   // fish.moveright();
-
-    switch(event.key) {
-      case "ArrowUp":
-        fish.moveup();
-        console.log("UP");
-        break;
-      case "ArrowDown":
-        fish.movedown();
-        console.log("Down");
-        break;
-      case "ArrowLeft":
-        fish.moveleft();
-        console.log("Left")
-        break;
-      case "ArrowRight":
-        fish.moveright();
-        console.log("Right")
-        break;
-      }
-  })
-}
+// }
+//  // function () // show board in click eventlistener - show your player parent-append-<div>  function () // method update, move 
 
 
 
-    // fish.movedown();
-
-// //document.addEventListener('keydown', event => {
-//   //console.log('event keyCode', event.keyCode);
-//   //switch (event.keyCode) {
-//     //case 37:
-//       //fish.moveLeft();
-//       //console.log('left', fish);
-//       //break;
-//     //case 39:fish.moveRight();
-//
+//   frames += 1;
+//   if (frames % 120 === 0) {
+//     let x = board.height;
+//     let minWidth = 90;
+//     let maxWidth = 300;
+//     let width = Math.floor(
+//       Math.random() * (maxWidth - minWidth + 1) + minWidth
+//       );
+//       let minGap = 0;
+//       myObstacles.push(new Obstacle());
+//       console.log(myObstacles);
+//     }
+//   }

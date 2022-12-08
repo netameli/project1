@@ -2,7 +2,17 @@ body {
   background-color: pink;
   position: relative;
   height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  color:cornflowerblue;
+}
 
+.btn-roll {  
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  color:darksalmon;
+  background-position: center center;
 }
 
 .game-board {
@@ -13,7 +23,7 @@ body {
   background-image: url("../images/sky.jpg");
   background-size: cover;
   background-position: center center;
-  position: relative; 
+  position: absolute; 
   border: 1px solid black; 
   top: 0;
   bottom: 0;
@@ -24,10 +34,61 @@ body {
 
 .hero {
   position: absolute;
-  width: 100px;
-  height: 70px;
+  width: 80px;
+  height: 50px;
   background-image: url("../images/hero.png");
   background-size: cover;
   background-position: center center;
+}
+
+.angel {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  background-image: url("../images/angel.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.koi {
+  position: relative;
+  width: 130px;
+  height: 70px;
+  background-image: url("../images/koi.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+.squid {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  background-image: url("../images/squid.png");
+  background-size: cover;
+  background-position: center center;
+}
+.tropic {
+  position: relative;
+  width: 130px;
+  height: 70px;
+  background-image: url("../images/tropic.png");
+  background-size: cover;
+  background-position: center center;
+}
+.turtle {
+  position: relative;
+  width: 130px;
+  height: 70px;
+  background-image: url("../images/turtle.png");
+  background-size: cover;
+  background-position: center center;
+}
+
+aside.points {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  font-style: normal;
+  color:cornflowerblue;
+  bottom:-1px;
 }
 
