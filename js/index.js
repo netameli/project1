@@ -1,7 +1,15 @@
 const fish = document.querySelector(".hero")
 const obstacle = document.querySelector(".obstacles")
 const arrayObstacles = []
-let score = 0;
+let currentGame;
+
+class Game {
+  constructor() {
+      this.fish = {},
+      this.obstacles = [];
+      this.score = 0;
+  }
+}
 
 class Obstacle {
   constructor(name, x, y) {
@@ -15,6 +23,7 @@ class Obstacle {
     this.element = Element
   }
 
+
   hideObstacle () {
     this.element.style.display= "inline"
   }
@@ -25,15 +34,14 @@ class Obstacle {
     this.element.style.top = this.y + "px"
   }
 
-
 }
 
 class Fish {
   constructor(width, height, x, y) {
     this.width = width;
     this.height = height;
-    this.x = 0;
-    this.y = 0; 
+    this.x = 20;
+    this.y = 70; 
     this.fish = fish;
   }
   
@@ -61,8 +69,8 @@ class Fish {
     if (this.x > 650) return;
     this.x += 20; 
     this.fish.style.left = this.x+"px";
-    //limit
   }
+
 } 
 
 window.onload = () => {
@@ -80,7 +88,7 @@ function startGame() {
    obstacles.showObstacle () 
    console.log(obstacles)
    my.arrayObstacles.push(obstacle)
-  }, 30000);
+  }, 6000);
   document.addEventListener('keydown', event => {
     switch(event.key) {
       case "ArrowUp":
@@ -102,6 +110,38 @@ function startGame() {
       }
   })
 }
+
+
+  // collisionDetect() {
+  //     if (this !== obstacle) {
+  //       const dx = this.x - obstacle.x;
+  //       const dy = this.y - obstacle.y;
+  //       const distance = Math.sqrt(dx * dx + dy * dy);
+        
+  //       return true
+  //       if (distance < this.size + obstacle.size); 
+  //     }
+  // }
+// function detectCollision(obstacle) {
+//   return !((fish.y > obstacle.y + obstacle.height) || 
+//   (fish.x + fish.width < obstacle.x) || 
+//   (fish.x - fish.width  > obstacle.x + obstacle.width))
+// }
+//   if (detectCollision(currentGame.obstacles[i])) {
+//     alert('hello!')
+//     currentGame.score = 0++;
+//     document.getElementById('score').innerHTML = 0;
+//     currentGame.obstacles = [];
+//     document.getElementById('game-board').style.display = 'none';
+
+// function isCollided(fish, obstacle) {
+//   return !(
+//       ((fish.y + fish.height) < (obstacle.y)) ||
+//       (fish.y > (obstacle.y + obstacle.height)) ||
+//       ((fish.x + obstacle.width) < obstacle.x) ||
+//       (fish.x > (obstacle.x + obstacle.width))
+//   );
+// }
 
 
 
