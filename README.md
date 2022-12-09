@@ -1,26 +1,27 @@
-Project's name
-Click here to see deployed game
+Fishy in the Sky
 
 Description
-Brief description of the project
+Fishy floating in Sky to meet friends and finally make it back home.
 
 MVP
-MVP definition here, list of minimum features
+-Fish moving in all four directions.
+-Sea creatures appearing.
+-Fish collecting score through meeting the sea creatures.
 
 Backlog
-List of features you might implement after the MVP
+-When enough points are reached the fishy finding the way home back to home, a new background of a planet.
 
 Data structure
-List of classes and methods
+Fish
+Obstacles
 
 States y States Transitions
-List of states (views) of your game
+Start screen
 
 Task
 List of tasks in order of priority
 
 Links
-Trello Link
-Slides Link
-Github repository Link
-Deployment Link
+https://trello.com/invite/b/EcBk3kxA/ATTI7220c93baae98e7846adaee05d41ce41BA42BE5F/module-1-project
+https://netameli.github.io/project1/
+https://docs.google.com/document/d/1aM52iNV16J-FKGkCyX48tarR74MGbRzeOL2_y5Splxc/edit?usp=sharing
