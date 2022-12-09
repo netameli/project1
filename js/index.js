@@ -2,6 +2,8 @@ const fish = document.querySelector(".hero")
 const obstacle = document.querySelector(".obstacles")
 const arrayObstacles = []
 let currentGame;
+let intervalId;
+
 
 class Game {
   constructor() {
@@ -16,6 +18,8 @@ class Obstacle {
     this.x = Math.floor(Math.random()* 650);
     this.y = Math.floor(Math.random()* 450);
     this.name= "squid"
+    this.width= 60;
+    this.height=30;
     const Element = document.createElement("div")
     Element.classList = this.name +" obstacle"
     const obstacles = document.getElementById("obstacles")
@@ -23,6 +27,21 @@ class Obstacle {
     this.element = Element
   }
 
+  bottom (){
+    return this.y + this.height;
+  }
+
+  top (){
+    return this.y;
+  }
+
+  left (){
+    return this.x;
+  }
+
+  right (){
+    return this.x + this.width;
+  }
 
   hideObstacle () {
     this.element.style.display= "inline"
@@ -44,7 +63,23 @@ class Fish {
     this.y = 70; 
     this.fish = fish;
   }
-  
+
+  bottom (){
+    return this.y + this.height;
+  }
+
+  top (){
+    return this.y;
+  }
+
+  left (){
+    return this.x;
+  }
+
+  right (){
+    return this.x + this.width;
+  }
+
   moveup() {
     if (this.y < 10) return;
     this.y -=20; 
@@ -87,7 +122,8 @@ function startGame() {
    const obstacles = new Obstacle ()
    obstacles.showObstacle () 
    console.log(obstacles)
-   my.arrayObstacles.push(obstacle)
+   arrayObstacles.push(obstacles)
+   checkCollision()
   }, 6000);
   document.addEventListener('keydown', event => {
     switch(event.key) {
@@ -109,14 +145,44 @@ function startGame() {
         break;
       }
   })
-}
+
+  function checkCollision() { 
+    const crashed = arrayObstacles.some(function (obstacle) {
+      return isCollided(obstacle);
+    });
+
+    if(crashed) {
+      console.log("hello");
+    }
+  }
+  }
+
+  function isCollided(obstacle) {
+    return !(
+      ((fish.y + fish.height) < (obstacle.y)) ||
+      (fish.y > (obstacle.y + obstacle.height)) ||
+      ((fish.x + obstacle.width) < obstacle.x) ||
+      (fish.x > (obstacle.x + obstacle.width))
+      );
+    }
+
+
+
+
+    //  crashWith(obstacle) {
+//   return !(
+//     fish.bottom() < obstacle.top() ||
+//     fish.top() > obstacle.bottom() ||
+//     fish.right() < obstacle.left() + 5 ||
+//     fish.left() > obstacle.right() - 5
+//   );
 
 
   // collisionDetect() {
   //     if (this !== obstacle) {
-  //       const dx = this.x - obstacle.x;
-  //       const dy = this.y - obstacle.y;
-  //       const distance = Math.sqrt(dx * dx + dy * dy);
+  //       const x = this.x - obstacle.x;
+  //       const y = this.y - obstacle.y;
+  //       const distance = Math.sqrt(x * x + y * y);
         
   //       return true
   //       if (distance < this.size + obstacle.size); 
@@ -127,7 +193,7 @@ function startGame() {
 //   (fish.x + fish.width < obstacle.x) || 
 //   (fish.x - fish.width  > obstacle.x + obstacle.width))
 // }
-//   if (detectCollision(currentGame.obstacles[i])) {
+//   if (isCollided(currentGame.obstacles[i])) {
 //     alert('hello!')
 //     currentGame.score = 0++;
 //     document.getElementById('score').innerHTML = 0;
@@ -144,6 +210,7 @@ function startGame() {
 // }
 
 
+  
 
 // next step is to build an array and pick a random name from this array. 
 // push the obstacle to the array const my obstacle = new obstacle 
@@ -172,13 +239,7 @@ function startGame() {
 //   }
 // }
 
-//  crashWith(obstacle) {
-//   return !(
-//     fish.bottom() < obstacle.top() ||
-//     fish.top() > obstacle.bottom() ||
-//     fish.right() < obstacle.left() + 5 ||
-//     fish.left() > obstacle.right() - 5
-//   );
+
 // }
 
 //  stop() {
